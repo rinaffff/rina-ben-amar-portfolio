@@ -9,8 +9,8 @@
 <style>
 /* TOKENS */
 :root {
---peach: #FFF0D2;
---peach-mid: #F5E4C0;
+--peach: #FFF9ED; 
+--peach-mid: #FBF2DE;
 --espresso: #351E28;
 --plum: #5B1E32;
 --plum-soft: #4D3449;
@@ -38,7 +38,6 @@ line-height:1.7;
 cursor:none;
 overflow-x:hidden;
 }
-/* grain overlay */
 body::after {
 content:"";
 position:fixed; inset:0;
@@ -85,7 +84,7 @@ position:relative; overflow:hidden;
 }
 .hero-img-bg {
 position:absolute; inset:0;
-background-image:url('https://rinaffff.github.io/rina-portfolio/assets/r_background.png');
+background-image:url('assets/r_background.png');
 background-size: cover; background-position:center;
 opacity:.07; pointer-events:none;
 }
@@ -120,9 +119,9 @@ font-weight:400; line-height:.88; letter-spacing:-.025em;
 opacity:0; animation:up 1.1s var(--ease) .45s forwards;
 margin-bottom:.8rem;
 }
-.hero-h1.it { font-style:italic; }
-.hero-h1.pk { color:var(--pink); }
-.hero-h1.ol { color:var(--olive); font-style:italic; }
+.hero-h1 .it { font-style:italic; }
+.hero-h1 .pk { color:var(--pink); }
+.hero-h1 .ol { color:var(--olive); font-style:italic; }
 .hero-sub {
 display: flex; align-items:baseline; gap:2.5rem; margin-top:2rem;
 opacity:0; animation:up .9s var(--ease) .75s forwards;
@@ -210,7 +209,6 @@ transition:opacity .9s var(--ease), transform .9s var(--ease);
 .gallery { display:grid; gap:.65rem; }
 .g-2col { grid-template-columns:1fr 1fr; }
 .g-asym { grid-template-columns:5fr 3fr; }
-.g-3col { grid-template-columns:1fr 1fr 1fr; }
 .gi { display:block; width: 100%; object-fit:cover; transition:transform .7s var(--ease), filter .4s; filter:saturate(.9) brightness(.98); }
 .gi:hover { transform: scale(1.025); filter:saturate(1.08) brightness(1.01); }
 .gi-std { aspect-ratio:4/3; }
@@ -269,7 +267,7 @@ nav { padding:1.4rem; }
 #about { grid-template-columns:1fr; gap:2rem; padding-top:5rem; padding-bottom:5rem; }
 .project { grid-template-columns:1fr; padding:3rem 1.4rem; }
 .proj-num { display:none; }
-.g-2col, .g-asym, .g-3col, .vid-grid { grid-template-columns:1fr; }
+.g-2col, .g-asym, .vid-grid { grid-template-columns:1fr; }
 .gi-wide { grid-column:auto; }
 .contact-inner { grid-template-columns: 1fr; }
 .statement-inner { grid-template-columns:1fr; }
@@ -407,12 +405,11 @@ Spanning four years of international direction across luxury fashion, national t
 <p class="proj-role">Role — Lead Graphic Designer</p>
 </div>
 <div class="gallery g-2col">
-<img class="gi gi-tall" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_b_2.png" alt="Selma Feriani Gallery - desktop identity" loading="lazy" />
+<img class="gi gi-tall" src="assets/sfg_b_2.png" alt="Selma Feriani Gallery - desktop identity" loading="lazy" />
 <div class="gi-stack">
-<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_m.png" alt="Selma Feriani Gallery - mobile view" loading="lazy" />
-<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_m2.png" alt="Selma Feriani Gallery - mobile detail" loading="lazy" />
+<img class="gi gi-std" src="assets/sfg_m.png" alt="Selma Feriani Gallery - mobile view" loading="lazy" />
+<img class="gi gi-std" src="assets/sfg_m2.png" alt="Selma Feriani Gallery - mobile detail" loading="lazy" />
 </div>
-<img class="gi gi-wide" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_b_3.png" alt="Selma Feriani Gallery - editorial spread" loading="lazy" />
 </div>
 </article>
 
@@ -435,26 +432,26 @@ Spanning four years of international direction across luxury fashion, national t
 <p class="proj-role">Role — Brand Designer &amp; Art Director</p>
 </div>
 <div class="gallery g-asym">
-<img class="gi gi-tall" src="https://rinaffff.github.io/rina-portfolio/assets/hog_design_1.jpg" alt="House of Goddesses - brand identity" loading="lazy" />
+<img class="gi gi-tall" src="assets/hog_design_1.jpg" alt="House of Goddesses - brand identity" loading="lazy" />
 <div class="gi-stack">
-<img class="gi gi-sq" src="https://rinaffff.github.io/rina-portfolio/assets/hog_logo_1.png" alt="House of Goddesses logotype" loading="lazy" />
-<img class="gi gi-sq" src="https://rinaffff.github.io/rina-portfolio/assets/hog_logo_2.png" alt="House of Goddesses - logo variant" loading="lazy" />
+<img class="gi gi-sq" src="assets/hog_logo_1.png" alt="House of Goddesses logotype" loading="lazy" />
+<img class="gi gi-sq" src="assets/hog_logo_2.png" alt="House of Goddesses - logo variant" loading="lazy" />
 </div>
-<img class="gi gi-wide" src="https://rinaffff.github.io/rina-portfolio/assets/hog_design_2.jpg" alt="House of Goddesses campaign spread" loading="lazy" />
-<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/hog_design_3.jpg" alt="House of Goddesses - identity detail" loading="lazy" />
-<img class="gi gi-3to2" src="https://rinaffff.github.io/rina-portfolio/assets/hog_design_4.jpg" alt="House of Goddesses - packaging" loading="lazy" />
+<img class="gi gi-wide" src="assets/hog_design_2.jpg" alt="House of Goddesses campaign spread" loading="lazy" />
+<img class="gi gi-std" src="assets/hog_design_3.jpg" alt="House of Goddesses - identity detail" loading="lazy" />
+<img class="gi gi-3to2" src="assets/hog_design_4.jpg" alt="House of Goddesses - packaging" loading="lazy" />
 </div>
 <div class="vid-grid" style="grid-column:1/-1; margin-top:.65rem;">
 <div class="vid-wrap">
-<video src="https://rinaffff.github.io/rina-portfolio/assets/hog_vid_1.mp4" autoplay muted loop playsinline aria-label="House of Goddesses - motion 1"></video>
+<video src="assets/hog_vid_1.mp4" autoplay muted loop playsinline aria-label="House of Goddesses - motion 1"></video>
 <span class="vid-label">Motion 01</span>
 </div>
 <div class="vid-wrap">
-<video src="https://rinaffff.github.io/rina-portfolio/assets/hog_vid_2.mp4" autoplay muted loop playsinline aria-label="House of Goddesses - motion 2"></video>
+<video src="assets/hog_vid_2.mp4" autoplay muted loop playsinline aria-label="House of Goddesses - motion 2"></video>
 <span class="vid-label">Motion 02</span>
 </div>
 <div class="vid-wrap">
-<video src="https://rinaffff.github.io/rina-portfolio/assets/hog_vid_3.mp4" autoplay muted loop playsinline aria-label="House of Goddesses - motion 3"></video>
+<video src="assets/hog_vid_3.mp4" autoplay muted loop playsinline aria-label="House of Goddesses - motion 3"></video>
 <span class="vid-label">Motion 03</span>
 </div>
 </div>
@@ -478,40 +475,30 @@ Spanning four years of international direction across luxury fashion, national t
 <p class="proj-role">Role — Lead Designer</p>
 </div>
 <div class="gallery g-2col">
-<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/st_d_1.png" alt="Southtown Rage - identity system" loading="lazy" />
-<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/st_d_2.png" alt="Southtown Rage graphic detail" loading="lazy" />
-<img class="gi gi-wide" src="https://rinaffff.github.io/rina-portfolio/assets/st_presentation.png" alt="Southtown Rage - full presentation" loading="lazy" />
-<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/st_d_3.png" alt="Southtown Rage colour study" loading="lazy" />
-<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/st_d_5.png" alt="Southtown Rage - detail 5" loading="lazy" />
-<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/st_d_7.png" alt="Southtown Rage detail 7" loading="lazy" />
-<img class="gi gi-wide" src="https://rinaffff.github.io/rina-portfolio/assets/southtown_tshirts.png" alt="Southtown Rage merchandise" loading="lazy" />
-</div>
-</article>
-
-<!-- PROJECT 04: BUCK N' BREW -->
-<article class="project">
-<div class="proj-num">〇四</div>
-<div class="proj-meta">
-<p class="proj-client">Lifestyle &amp; Concept Branding</p>
-<h3 class="proj-name">Buck n'<br>Brew</h3>
-<span class="proj-name-jp">バック・アンド・ブリュー</span>
-<div class="proj-tags">
-<span class="tag">Brand Identity</span>
-<span class="tag">Concept Strategy</span>
-<span class="tag">Packaging</span>
-<span class="tag">Logo Design</span>
-</div>
-<p class="proj-brief">Holistic identity design and conceptual brand strategy for a contemporary, artisanal coffee house.</p>
-<p class="proj-concept">Sculpting a distinct "warm-intellectual" visual ecosystem. Balancing rustic textures with sophisticated modern layout systems to create an inviting, lifestyle-driven brand presence that targets premium consumer segments.</p>
-<p class="proj-role">Role — Art Director &amp; Brand Strategist</p>
-</div>
-<div class="gallery g-2col">
-<!-- Assets fallbacks clônés sur la structure propre pour tes futurs mockups -->
-<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_m.png" alt="Buck n Brew - Branding Identity Mockup" loading="lazy" />
-<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_m2.png" alt="Buck n Brew - Packaging Detail" loading="lazy" />
+<img class="gi gi-std" src="assets/st_d_1.png" alt="Southtown Rage - identity system" loading="lazy" />
+<img class="gi gi-std" src="assets/st_d_2.png" alt="Southtown Rage graphic detail" loading="lazy" />
+<img class="gi gi-std" src="assets/st_d_3.png" alt="Southtown Rage colour study" loading="lazy" />
+<img class="gi gi-std" src="assets/st_d_5.png" alt="Southtown Rage - detail 5" loading="lazy" />
+<img class="gi gi-std" src="assets/st_d_7.png" alt="Southtown Rage detail 7" loading="lazy" />
+<img class="gi gi-wide" src="assets/southtown_tshirts.png" alt="Southtown Rage merchandise" loading="lazy" />
 </div>
 </article>
 </section>
+
+<!-- ARCHIVE / REPOSITORY STRUCTURAL LINKS FOR EXTENDED SECTIONS -->
+<div style="display:none;" aria-hidden="true">
+  <!-- Pupchen - High-End Footwear Brand Tree -->
+  <img src="assets/pup_design_1.jpg" alt="Pupchen Footwear Architecture & Branding" />
+  <img src="assets/pup_logo.png" alt="Pupchen Emblem" />
+  
+  <!-- Maison de la Lumière Asset Tree -->
+  <img src="assets/mdl_spread.jpg" alt="Maison de la Lumiere Layout" />
+  <img src="assets/mdl_poster.jpg" alt="Festival Poster Design" />
+
+  <!-- Buck n' Brew Asset Tree -->
+  <img src="assets/BB_identity.jpg" alt="Buck n Brew Warm Intellectual Branding" />
+  <img src="assets/BB_packaging.jpg" alt="Buck n Brew Matte Packet" />
+</div>
 
 <!-- CONTACT -->
 <section id="contact">
