@@ -1,448 +1,569 @@
-<!doctype html>
-<html lang="ja">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Rina Ben Amar — Portfolio</title>
-
-<!-- Noto Sans JP for body / Japanese compatibility -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
-
-<!-- NOTE: Add your licensed display fonts (Canela / Big Caslon / Bodoni 72 / Grenoble) via Adobe Fonts kit or self-hosted @font-face.
-     Example (Adobe): insert the Adobe kit <script> just before closing </head>.
-     This template uses those font names as first choices and gracefully falls back to high-quality serifs. -->
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rina Benamar - Senior Art Director & Graphic Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400;1,6..96,500&family=IM+Fell+English:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400&family=Noto+Serif+JP:wght@200;300;400&family=Caveat:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-  :root{
-    --max-width:1100px;
-    --accent:#0b0b0b;
-    --muted:#686868;
-    --bg:#ffffff;
-    --gutter: clamp(18px, 2.6vw, 36px);
-  }
+/* TOKENS */
+:root {
+--peach: #FFF0D2;
+--peach-mid: #F5E4C0;
+--espresso: #351E28;
+--plum: #5B1E32;
+--plum-soft: #4D3449;
+--olive: #6C6A43;
+--pink: #CB438B;
+--rose: #BF3556;
+--mint: #B7E1DA;
+--line: rgba(53,30,40,.13);
+--line-lt: rgba(53,30,40,.07);
+--f-disp: 'Bodoni Moda', Georgia, serif;
+--f-ser: 'IM Fell English', Georgia, serif;
+--f-body: 'DM Sans', sans-serif;
+--f-jp: 'Noto Serif JP', serif;
+--f-hand: 'Caveat', cursive;
+--ease: cubic-bezier(0.16,1,0.3,1);
+}
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; }
+body {
+background:var(--peach);
+color:var(--espresso);
+font-family:var(--f-body);
+font-weight:300;
+line-height:1.7;
+cursor:none;
+overflow-x:hidden;
+}
+/* grain overlay */
+body::after {
+content:"";
+position:fixed; inset:0;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+opacity:.036; pointer-events:none; z-index:9000;
+}
+/* CURSOR */
+#cursor {
+position:fixed; width: 9px; height:9px;
+background:var(--pink); border-radius:50%;
+pointer-events:none; z-index:9999;
+transform:translate(-50%,-50%);
+transition:width .35s var(--ease), height .35s var(--ease), background.3s;
+mix-blend-mode:multiply;
+}
+#cursor.big { width: 50px; height:50px; background:var(--mint); opacity:.65; }
+#cursor-ring {
+position:fixed; width:32px; height:32px;
+border:1.5px solid rgba(203,67,139,.3); border-radius: 50%;
+pointer-events:none; z-index:9998;
+transform:translate(-50%,-50%);
+transition:left .14s var(--ease), top .14s var(--ease);
+}
+/* NAV */
+nav {
+position:fixed; inset:0 0 auto; z-index:500;
+padding:1.8rem 3.5rem;
+display:flex; justify-content:space-between; align-items:center;
+background:linear-gradient(to bottom, var(--peach) 55%, transparent);
+}
+.logo { text-decoration:none; display:flex; flex-direction:column; line-height:1.2; }
+.logo-en { font-family:var(--f-disp); font-size:.9rem; font-weight:400; letter-spacing:.25em; text-transform:uppercase; color:var(--espresso); }
+.logo-jp { font-family:var(--f-jp); font-size:.54rem; font-weight:200; letter-spacing:.4em; color:var(--plum); opacity:.6; }
+.nav-links { list-style:none; display:flex; gap:2.8rem; align-items:center; }
+.nav-links a { font-size:.63rem; letter-spacing:.24em; text-transform:uppercase; text-decoration:none; color:var(--plum-soft); transition:color .3s; }
+.nav-links a:hover { color:var(--pink); }
 
-  html,body{height:100%; margin:0; background:var(--bg); color:var(--accent); font-family:"Noto Sans JP", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+/* HERO */
+#hero {
+min-height:100vh;
+padding:0 3.5rem 3rem;
+display:grid; grid-template-rows:1fr auto;
+position:relative; overflow:hidden;
+}
+.hero-img-bg {
+position:absolute; inset:0;
+background-image:url('https://rinaffff.github.io/rina-portfolio/assets/r_background.png');
+background-size: cover; background-position:center;
+opacity:.07; pointer-events:none;
+}
+.hero-bg-jp {
+position:absolute; right:2vw; top:50%;
+transform:translateY(-50%);
+font-family:var(--f-jp);
+font-size:clamp(9rem, 28vw, 26rem);
+font-weight:200; color:rgba(91,30,50,.055);
+pointer-events:none; line-height:1; user-select:none;
+writing-mode:vertical-rl;
+}
+.hero-rule {
+position:absolute; left:3.5rem; top:0; bottom:0;
+width:2px;
+background: linear-gradient(to bottom, transparent, var(--pink) 35%, var(--rose) 70%, transparent);
+opacity:.17;
+}
+.hero-center {
+display:flex; flex-direction:column; justify-content:flex-end;
+padding-bottom:5rem; padding-left:2.5rem;
+}
+.hero-eyebrow {
+font-family:var(--f-hand); font-size:1.2rem; color:var(--pink);
+margin-bottom:1.2rem;
+opacity:0; animation:up .9s var(--ease) .3s forwards;
+}
+.hero-h1 {
+font-family:var(--f-disp);
+font-size:clamp(4rem, 12vw, 12rem);
+font-weight:400; line-height:.88; letter-spacing:-.025em;
+opacity:0; animation:up 1.1s var(--ease) .45s forwards;
+margin-bottom:.8rem;
+}
+.hero-h1.it { font-style:italic; }
+.hero-h1.pk { color:var(--pink); }
+.hero-h1.ol { color:var(--olive); font-style:italic; }
+.hero-sub {
+display: flex; align-items:baseline; gap:2.5rem; margin-top:2rem;
+opacity:0; animation:up .9s var(--ease) .75s forwards;
+}
+.hero-tagline { font-family:var(--f-ser); font-size:clamp(.82rem, 1.4vw, 1.1rem); font-style:italic; line-height:1.7; max-width:480px; color:var(--plum-soft); }
+.hero-jp-tag { font-family:var(--f-jp); font-size:.62rem; font-weight:200; letter-spacing:.35em; color:var(--pink); opacity:.65; white-space:nowrap; }
+.hero-foot {
+display:flex; justify-content:space-between; align-items:center;
+border-top:1px solid var(--line); padding-top:1.4rem; margin-left:2.5rem;
+opacity:0; animation:up .8s var(--ease) 1.1s forwards;
+}
+.hero-foot-l { display: flex; flex-direction:column; gap:.28rem; }
+.hero-location { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--plum-soft); opacity:.5; }
+.hero-avail { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--pink); }
+.hero-scroll { display: flex; align-items:center; gap:.7rem; font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:var(--plum-soft); opacity:.4; }
+.scroll-line { display:block; width:0; height: 1px; background: var(--pink); animation:grow 1.2s var(--ease) 1.5s forwards; }
+@keyframes grow { to { width:48px; } }
 
-  /* subtle background texture (replace with assets/bg-rina.jpg) */
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background-image: url('assets/bg-rina.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.06;
-    pointer-events:none;
-    z-index:-1;
-  }
+/* STATEMENT BAND */
+.statement-band {
+background:linear-gradient(135deg, var(--plum), var(--espresso));
+padding:4.5rem 3.5rem; position:relative; overflow:hidden;
+}
+.statement-inner { position:relative; display:grid; grid-template-columns:1fr auto; align-items:center; gap:3rem; }
+.statement-text { font-family:var(--f-disp); font-size:clamp(1.3rem, 2.8vw, 2.6rem); font-weight: 300; font-style:italic; color:var(--peach); line-height:1.4; }
+.statement-text em { font-style:normal; color:var(--mint); }
+.statement-jp { font-family:var(--f-jp); font-size:.7rem; font-weight:200; letter-spacing:.38em; color:var(--mint); opacity:.5; writing-mode:vertical-rl; white-space:nowrap; }
 
-  /* Page wrapper, centered */
-  .wrap {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: calc(var(--gutter) * 2) var(--gutter) 120px var(--gutter);
-  }
+/* ABOUT */
+#about { padding:9rem 3.5rem; display:grid; grid-template-columns:240px 1fr; gap:5.5rem; }
+.section-label { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:var(--pink); padding-top:.5rem; }
+.about-h2 { font-family:var(--f-disp); font-size:clamp(1.7rem, 3vw, 2.8rem); font-weight:300; line-height:1.3; margin-bottom:2rem; }
+.about-h2 em { font-style:italic; color:var(--rose); }
+.about-body { font-family:var(--f-ser); font-size:.9rem; font-style:italic; color:var(--plum-soft); line-height: 2; max-width: 620px; margin-bottom: 3rem; }
+.jp-pill-row { display:flex; flex-wrap:wrap; gap:.55rem; margin-bottom:3rem; }
+.jp-pill { display: flex; flex-direction:column; align-items:center; gap:.22rem; border:1px solid var(--line); padding:.65rem 1.1rem; background:rgba(203,67,139,.035); transition:border-color .3s; }
+.jp-pill:hover { border-color:var(--pink); }
+.jp-pill-jp { font-family:var(--f-jp); font-size:.82rem; font-weight:300; color:var(--espresso); letter-spacing:.12em; }
+.jp-pill-en { font-size:.53rem; letter-spacing:.2em; text-transform:uppercase; color:var(--pink); }
+.influences-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.4rem; }
+.infl-item { border:1px solid var(--line-lt); padding:.65rem .85rem; transition:border-color .3s, background .3s; }
+.infl-item:hover { border-color:var(--pink); background:rgba(203,67,139,.035); }
+.infl-cat {font-size:.52rem; letter-spacing:.22em; text-transform:uppercase; color:var(--pink); margin-bottom:.22rem; }
+.infl-name { font-family:var(--f-disp); font-size:.76rem; font-weight:400; color:var(--espresso); line-height:1.5; }
 
-  /* Top nav minimal (left brand, right nav) */
-  header {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-    padding: 12px 0;
-    position:sticky;
-    top:0;
-    background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92));
-    z-index:50;
-    backdrop-filter: blur(3px);
-  }
-  .brand {
-    font-family: 'Canela', 'Bodoni 72 Old Style', 'Big Caslon', 'Grenoble Serial', Georgia, serif;
-    font-size:18px;
-    letter-spacing:0.02em;
-  }
-  nav a{
-    color:var(--accent);
-    text-decoration:none;
-    margin-left:18px;
-    font-size:14px;
-  }
-  nav a:hover{text-decoration:underline;}
+/* MARQUEE */
+.marquee-wrap { overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:1.1rem 0; background:var(--peach-mid); }
+.marquee-track { display: flex; gap:3rem; white-space:nowrap; animation:marquee 22s linear infinite; }
+.marquee-item { display: flex; align-items:center; gap:3rem; flex-shrink:0; }
+.m-en {font-family:var(--f-disp); font-style:italic; font-size:.95rem; color:var(--espresso); opacity:.38; }
+.m-jp { font-family:var(--f-jp); font-size:.68rem; font-weight:200; letter-spacing:.28em; color:var(--pink); opacity:.42; }
+.m-dot { width:4px; height: 4px; border-radius: 50%; background:var(--pink); opacity:.38; flex-shrink:0; }
+@keyframes marquee { to { transform: translateX(-50%); } }
 
-  /* Hero: perfectly centered heading like your screenshot */
-  .hero {
-    text-align:center;
-    padding: 90px 16px 60px 16px;
-  }
-  .hero h1{
-    margin:0;
-    font-family: 'Canela', 'Bodoni 72 Old Style', 'Big Caslon', Georgia, serif;
-    font-weight:400;
-    font-size: clamp(28px, 6.4vw, 56px); /* large, responsive like screenshot */
-    line-height:1.04;
-    letter-spacing:-0.02em;
-    color:var(--accent);
-  }
-  .hero p.lead{
-    margin:28px auto 0 auto;
-    font-size:16px;
-    color:var(--muted);
-    max-width:900px;
-    line-height:1.8;
-  }
-  .hero p.sub{
-    margin-top:18px;
-    font-size:15px;
-    color:#222;
-    max-width:900px;
-    margin-left:auto;
-    margin-right:auto;
-    line-height:1.7;
-  }
+/* WORK */
+#work { border-top:1px solid var(--line); }
+.work-header { padding:4rem 3.5rem 5.5rem; display: flex; justify-content:space-between; align-items:flex-end; }
+.work-title { font-family:var(--f-disp); font-size:clamp(3rem, 7vw, 7rem); font-weight:400; font-style:italic; line-height:.9; }
+.work-title span { display:block; font-family:var(--f-hand); font-style:normal; font-size:clamp(1.1rem, 2.5vw, 2.5rem); color:var(--pink); margin-top:.4rem; }
 
-  /* Section header (Work) centered */
-  .section-title {
-    text-align:center;
-    margin-top:56px;
-    margin-bottom:34px;
-    font-family: 'Canela', Georgia, serif;
-    font-size:26px;
-    color:var(--accent);
-    letter-spacing:-0.01em;
-  }
+/* PROJECT */
+.project {
+padding:5rem 3.5rem;
+border-top:1px solid var(--line);
+display:grid;
+grid-template-columns:80px 320px 1fr;
+gap:4rem;
+opacity:0; transform: translateY(40px);
+transition:opacity .9s var(--ease), transform .9s var(--ease);
+}
+.project.in { opacity:1; transform: translateY(0); }
+.project:nth-child(odd) { background:rgba(53,30,40,.022); }
+.proj-num { font-family:var(--f-jp); font-size:.68rem; font-weight:200; color:var(--pink); opacity:.45; padding-top:.5rem; letter-spacing:.12em; }
+.proj-client { font-size: .59rem; letter-spacing:.28em; text-transform:uppercase; color:var(--rose); margin-bottom:.5rem; }
+.proj-name { font-family:var(--f-disp); font-size:clamp(1.6rem, 2.8vw, 2.6rem); font-weight:400; line-height:1.1; margin-bottom:.4rem; }
+.proj-name-jp { display:block; font-family:var(--f-jp); font-size:.6rem; font-weight:200; letter-spacing:.3em; color:var(--pink); opacity:.5; margin-bottom:1.8rem; }
+.proj-tags { display: flex; flex-wrap:wrap; gap:.38rem; margin-bottom:1.8rem; }
+.tag { font-size: .57rem; letter-spacing:.15em; text-transform:uppercase; border:1px solid var(--line); padding:.23rem .62rem; color:var(--plum-soft); transition:border-color .3s, color .3s; }
+.tag:hover { border-color:var(--pink); color:var(--pink); }
+.proj-brief { font-family:var(--f-ser); font-size:.87rem; font-style:italic; color:var(--plum-soft); line-height: 2; margin-bottom: 1.5rem; }
+.proj-concept { font-size: .79rem; color:var(--espresso); line-height:1.9; margin-bottom:1.6rem; padding-left:1rem; border-left:2px solid var(--pink); }
+.proj-role { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--olive); }
 
-  /* Projects layout: symmetrical, centered flow */
-  .projects {
-    display:flex;
-    flex-direction:column;
-    align-items:center; /* center everything horizontally */
-    gap:64px;
-    padding: 0 6vw;
-  }
+/* GALLERIES */
+.gallery { display:grid; gap:.65rem; }
+.g-2col { grid-template-columns:1fr 1fr; }
+.g-asym { grid-template-columns:5fr 3fr; }
+.g-3col { grid-template-columns:1fr 1fr 1fr; }
+.gi { display:block; width: 100%; object-fit:cover; transition:transform .7s var(--ease), filter .4s; filter:saturate(.9) brightness(.98); }
+.gi:hover { transform: scale(1.025); filter:saturate(1.08) brightness(1.01); }
+.gi-std { aspect-ratio:4/3; }
+.gi-tall { aspect-ratio:2/3; }
+.gi-wide { aspect-ratio: 16/9; grid-column:1/-1; }
+.gi-sq { aspect-ratio:1/1; }
+.gi-3to2 { aspect-ratio:3/2; }
+.gi-stack { display: flex; flex-direction:column; gap:.65rem; }
 
-  .project {
-    width:100%;
-    max-width:880px; /* keeps a pleasing measure */
-    display:flex;
-    flex-direction:column;
-    align-items:center; /* center title + images */
-    gap:18px;
-    padding: 10px 0 0 0;
-    opacity:0;
-    transform: translateY(12px);
-    transition: opacity .6s ease, transform .6s cubic-bezier(.2,.9,.2,1);
-  }
-  .project.visible { opacity:1; transform:none; }
+/* VIDEO */
+.vid-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.65rem; grid-column:1/-1; }
+.vid-wrap { position:relative; aspect-ratio:9/16; overflow:hidden; background:var(--espresso); }
+.vid-wrap video { width:100%; height:100%; object-fit:cover; transition:transform .7s var(--ease); }
+.vid-wrap:hover video { transform: scale(1.03); }
+.vid-label { position:absolute; bottom:.7rem; left:.8rem; font-size:.55rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,240,210,.55); pointer-events:none; }
 
-  .project h3{
-    margin:0;
-    font-family: 'Canela', 'Bodoni 72 Old Style', 'Big Caslon', Georgia, serif;
-    font-size:20px;
-    color:var(--accent);
-    text-align:center;
-    font-weight:400;
-  }
-  .project .meta {
-    margin-top:6px;
-    font-size:13px;
-    color:var(--muted);
-    text-align:center;
-  }
-  .project .desc{
-    margin-top:12px;
-    font-size:15px;
-    color:#222;
-    text-align:center; /* centered copy */
-    line-height:1.75;
-    max-width:72ch;
-  }
+/* CONTACT */
+#contact { background: linear-gradient(135deg, var(--plum), var(--espresso)); padding:10rem 3.5rem; position:relative; overflow:hidden; }
+#contact::before { content: 'ご連絡'; position:absolute; right:1rem; bottom:-2rem; font-family:var(--f-jp); font-size:18rem; font-weight:200; color:rgba(255,240,210,.025); pointer-events:none; line-height:1; }
+.contact-inner { position:relative; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:end; }
+.contact-h2 { font-family:var(--f-disp); font-size:clamp(3.5rem, 9vw, 9rem); font-weight:400; font-style: italic; line-height: .88; color:var(--peach); }
+.contact-h2 em { color:var(--pink); font-style:normal; }
+.contact-h2 span { display:block; font-family:var(--f-hand); font-style:normal; font-size:clamp(1.3rem, 3.5vw, 3rem); color:var(--mint); margin-top:.6rem; }
+.contact-body { display: flex; flex-direction:column; gap:1.7rem; }
+.contact-intro { font-family:var(--f-ser); font-size:.88rem; font-style:italic; color:rgba(255,240,210,.58); line-height:2; }
+.contact-langs { display: flex; gap:.7rem; flex-wrap:wrap; }
+.lang-tag { font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; border:1px solid rgba(255,240,210,.18); padding:.28rem .72rem; color:rgba(255,240,210,.4); }
+.lang-tag.on { border-color:var(--mint); color:var(--mint); }
+.contact-jp { font-family:var(--f-jp); font-size:.72rem; font-weight:200; letter-spacing:.35em; color:var(--mint); opacity:.52; }
+.contact-mail { display:inline-block; font-family:var(--f-disp); font-size:clamp(1rem, 1.8vw, 1.4rem); font-weight:400; color:var(--peach); text-decoration:none; border-bottom:1px solid rgba(255,240,210,.25); padding-bottom:.22rem; transition:color .3s, border-color .3s; }
+.contact-mail:hover { color:var(--pink); border-color:var(--pink); }
 
-  /* Images: large, well-proportioned, centered and symmetrical */
-  .project-images {
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap:14px;
-    width:100%;
-    margin-top:14px;
-  }
-  /* for projects that need one single hero image (like album), allow single column */
-  .project-images.single {
-    grid-template-columns: 1fr;
-  }
+/* FOOTER */
+footer { background:var(--plum); padding:1.8rem 3.5rem; display: flex; justify-content:space-between; align-items:center; }
+.f-copy { font-size: .58rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,240,210,.38); }
+.f-jp { font-family:var(--f-jp); font-size: .56rem; font-weight:200; letter-spacing:.3em; color:var(--mint); opacity:.42; }
 
-  .project-images img {
-    width:100%;
-    height: clamp(220px, 28vw, 420px); /* pleasing aspect ratio */
-    object-fit:cover;
-    border-radius:10px;
-    display:block;
-    box-shadow: 0 8px 20px rgba(10,10,10,0.06);
-    border: 1px solid rgba(0,0,0,0.03);
-    background:#f8f6f2;
-  }
+/* ANIMATIONS */
+@keyframes up { from { opacity:0; transform: translateY(24px); } to { opacity:1; transform:translateY(0); } }
+.reveal { opacity:0; transform: translateY(30px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal.d1 { transition-delay:.1s; }
+.reveal.d2 { transition-delay:.2s; }
+.reveal.d3 { transition-delay:.3s; }
+.reveal.in { opacity:1; transform: translateY(0); }
 
-  /* action row */
-  .project-actions{
-    margin-top:12px;
-    display:flex;
-    gap:10px;
-  }
-  .btn{
-    display:inline-block;
-    background:var(--accent);
-    color:#fff;
-    padding:8px 12px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:600;
-    font-size:13px;
-  }
-  .btn.ghost{
-    background:transparent;
-    border:1px solid rgba(0,0,0,0.06);
-    color:var(--accent);
-  }
-
-  /* About and Contact sections centered */
-  section.about, section.contact{
-    margin-top:80px;
-    text-align:center;
-    padding: 0 12vw;
-  }
-  section.about h2, section.contact h2{
-    font-family: 'Canela', Georgia, serif;
-    font-size:20px;
-    margin-bottom:12px;
-  }
-  section.about p, section.contact p{
-    max-width:72ch;
-    margin-left:auto;
-    margin-right:auto;
-    color:#222;
-    font-size:15px;
-    line-height:1.7;
-  }
-
-  /* Footer centered */
-  footer {
-    text-align:center;
-    margin-top:64px;
-    color:var(--muted);
-    padding-bottom:40px;
-    font-size:14px;
-  }
-
-  /* Responsive: single-column images on small screens */
-  @media (max-width:900px) {
-    .project-images { grid-template-columns: 1fr; }
-    .project-images img { height: clamp(180px, 30vw, 360px); }
-    .wrap { padding-left:24px; padding-right:24px; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .project{ transition:none; transform:none; }
-  }
-
-  /* Japanese typography niceties */
-  body { word-break: keep-all; -webkit-font-feature-settings: "palt"; font-kerning: normal; }
+/* RESPONSIVE */
+@media (max-width:1100px) {
+.project { grid-template-columns:60px 1fr; }
+}
+@media (max-width:768px) {
+nav { padding:1.4rem; }
+.nav-links { display:none; }
+#hero, #about, .work-header, #contact, footer { padding-left:1.4rem; padding-right:1.4rem; }
+.hero-center { padding-left:1rem; }
+.hero-foot { margin-left:1rem; }
+#about { grid-template-columns:1fr; gap:2rem; padding-top:5rem; padding-bottom:5rem; }
+.project { grid-template-columns:1fr; padding:3rem 1.4rem; }
+.proj-num { display:none; }
+.g-2col, .g-asym, .g-3col, .vid-grid { grid-template-columns:1fr; }
+.gi-wide { grid-column:auto; }
+.contact-inner { grid-template-columns: 1fr; }
+.statement-inner { grid-template-columns:1fr; }
+.statement-jp { display:none; }
+.influences-grid { grid-template-columns:1fr 1fr; }
+footer { flex-direction:column; gap:.4rem; text-align:center; }
+}
 </style>
 </head>
 <body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-  <div class="wrap">
-    <!-- header with top nav -->
-    <header role="banner" aria-label="Top header">
-      <div class="brand">RINA BEN AMAR</div>
-      <nav aria-label="Main navigation">
-        <a href="#work">作品 / Work</a>
-        <a href="#about">自己紹介 / About</a>
-        <a href="#contact">連絡先 / Contact</a>
-      </nav>
-    </header>
+<!-- NAV -->
+<nav>
+<a href="#" class="logo">
+<span class="logo-en">Rina Benamar</span>
+<span class="logo-jp">リナ・ベナマール</span>
+</a>
+<ul class="nav-links">
+<li><a href="#work">作品/Work</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">連絡/Contact</a></li>
+</ul>
+</nav>
 
-    <!-- hero (copy exact screenshot phrase) -->
-    <section class="hero" id="hero" aria-labelledby="hero-title">
-      <h1 id="hero-title">Born in 1998 in Sfax, Tunisia — exploring design as dialogue of emotions and experiences.</h1>
-      <p class="lead">I find inspiration in movement, exchange, and experimentation — shaping every project through a human-centered creative lens.</p>
-      <p class="sub">1998年チュニジア・スファックス生まれ。デザインの潮流や仲間との視点交換を通じて創造力を育て、感情に根ざした実験と試行で表現を追求しています。</p>
-    </section>
+<!-- HERO -->
+<section id="hero">
+<div class="hero-img-bg" aria-hidden="true"></div>
+<div class="hero-bg-jp" aria-hidden="true">世界</div>
+<div class="hero-rule" aria-hidden="true"></div>
+<div class="hero-center">
+<p class="hero-eyebrow">Graphic Designer &amp; Art Director</p>
+<h1 class="hero-h1">
+<span class="it">Building</span><br>
+<span class="pk">worlds</span><span class="it">,</span><br>
+<span class="ol">not just</span><br>
+visuals.
+</h1>
+<div class="hero-sub">
+<p class="hero-tagline">Orchestrating visual universes at the intersection of avant-garde narrative, spatial harmony, and organic luxury.</p>
+<span class="hero-jp-tag">感覚と詩で世界をつくる</span>
+</div>
+</div>
+<div class="hero-foot">
+<div class="hero-foot-l">
+<span class="hero-location">Based in Tunis</span>
+<span class="hero-avail">Open to Japan &amp; International</span>
+</div>
+<span class="hero-scroll"><span class="scroll-line"></span>Scroll</span>
+</div>
+</section>
 
-    <!-- Work -->
-    <h2 class="section-title" id="work">Work</h2>
+<!-- STATEMENT BAND -->
+<div class="statement-band">
+<div class="statement-inner">
+<p class="statement-text">"I don't follow trends, I don't chase them.<br>I build <em>entire visual universes</em> from the inside out."</p>
+<span class="statement-jp">有機的な贅沢 et 詩的なコンセプト</span>
+</div>
+</div>
 
-    <section class="projects" aria-label="Projects list">
+<!-- ABOUT -->
+<section id="about">
+<div class="section-label reveal">哲学 / Philosophy</div>
+<div>
+<h2 class="about-h2 reveal">Rooted in sensation, <br>shaped by <em>culture</em>.</h2>
+<p class="about-body reveal d1">
+Spanning four years of international direction across luxury fashion, national television networks, and contemporary cultural institutions, my conviction is absolute: profound design operates on sensation before layout. I construct atmospheres rather than mere assets. My creative methodology bridges the structural rigor of western design with deep-rooted eastern philosophies—balancing the poetic restraint of <em>Ma</em> (negative space) with the uncompromising precision of <em>Monozukuri</em> (craftsmanship). I transform bold concepts into commercial resonance, defining distinct visual identities that respect heritage while challenging convention.
+</p>
+<div class="jp-pill-row reveal d2">
+<div class="jp-pill"><span class="jp-pill-jp">間</span><span class="jp-pill-en">Ma - space</span></div>
+<div class="jp-pill"><span class="jp-pill-jp">物作り</span><span class="jp-pill-en">Monozukuri - craft</span></div>
+<div class="jp-pill"><span class="jp-pill-jp">雅</span><span class="jp-pill-en">Miyabi - elegance</span></div>
+<div class="jp-pill"><span class="jp-pill-jp">侘び寂び</span><span class="jp-pill-en">Wabi-sabi - imperfection</span></div>
+</div>
+<div class="influences-grid reveal d3">
+<div class="infl-item"><p class="infl-cat">Art</p><p class="infl-name">Dalí · Magritte<br>Kusama · Kiyochika</p></div>
+<div class="infl-item"><p class="infl-cat">World-building</p><p class="infl-name">Miyazaki · Van Gogh<br>Monet · Hokusai</p></div>
+<div class="infl-item"><p class="infl-cat">Creative Direction</p><p class="infl-name">Virgil Abloh<br>Pharrell · ASAP Rocky</p></div>
+<div class="infl-item"><p class="infl-cat">Brands</p><p class="infl-name">Gentle Monster<br>Marine Serre · Jacquemus</p></div>
+<div class="infl-item"><p class="infl-cat">Luxury</p><p class="infl-name">Louis Vuitton<br>Vivienne · Chrome Hearts</p></div>
+<div class="infl-item"><p class="infl-cat">Beauty</p><p class="infl-name">Shiseido · Glossier<br>Collina Strada</p></div>
+</div>
+</div>
+</section>
 
-      <!-- Project 1 -->
-      <article class="project" id="p1">
-        <h3>La Maison B. Ammar</h3>
-        <div class="meta">Role: Graphic Designer & Content Manager — 2021/10/04 – 2023/09/29</div>
-        <p class="desc">Rebranded the company (logo, social media, stationery). Then led content production and managed shoots while evolving the brand’s visual storytelling.</p>
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+<div class="marquee-track">
+<div class="marquee-item">
+<span class="m-en">Graphic Design</span><span class="m-dot"></span>
+<span class="m-jp">グラフィックデザイン</span><span class="m-dot"></span>
+<span class="m-en">Art Direction</span><span class="m-dot"></span>
+<span class="m-jp">アートディレクション</span><span class="m-dot"></span>
+<span class="m-en">Visual Identity</span><span class="m-dot"></span>
+<span class="m-jp">ビジュアルアイデンティティ</span><span class="m-dot"></span>
+<span class="m-en">Brand World-Building</span><span class="m-dot"></span>
+<span class="m-jp">ブランドデザイン</span><span class="m-dot"></span>
+</div>
+<div class="marquee-item">
+<span class="m-en">Graphic Design</span><span class="m-dot"></span>
+<span class="m-jp">グラフィックデザイン</span><span class="m-dot"></span>
+<span class="m-en">Art Direction</span><span class="m-dot"></span>
+<span class="m-jp">アートディレクション</span><span class="m-dot"></span>
+<span class="m-en">Visual Identity</span><span class="m-dot"></span>
+<span class="m-jp">ビジュアルアイデンティティ</span><span class="m-dot"></span>
+<span class="m-en">Brand World-Building</span><span class="m-dot"></span>
+<span class="m-jp">ブランドデザイン</span><span class="m-dot"></span>
+</div>
+</div>
+</div>
 
-        <div class="project-images">
-          <img src="assets/p1-01.jpg" alt="La Maison B. Ammar image 1" onerror="this.style.opacity=0.25">
-          <img src="assets/p1-02.jpg" alt="La Maison B. Ammar image 2" onerror="this.style.opacity=0.25">
-        </div>
-        <div class="project-actions">
-          <a class="btn" href="#">Open (local)</a>
-        </div>
-      </article>
+<!-- WORK -->
+<section id="work">
+<div class="work-header">
+<h2 class="work-title">Selected<span>作品集</span></h2>
+</div>
 
-      <!-- Project 2 -->
-      <article class="project" id="p2">
-        <h3>Pupchen</h3>
-        <div class="meta">Role: Creative Direction & Content Management — 2023/08/17 – 2023/10/31</div>
-        <p class="desc">Led content strategy and daily production. Created seasonal editorial universes and social campaigns to support international sales.</p>
+<!-- PROJECT 01: SELMA FERIANI GALLERY -->
+<article class="project">
+<div class="proj-num">〇一</div>
+<div class="proj-meta">
+<p class="proj-client">Cultural Institution · London, UK</p>
+<h3 class="proj-name">Selma Feriani<br>Gallery</h3>
+<span class="proj-name-jp">セルマ・フェリアニ・ギャラリー</span>
+<div class="proj-tags">
+<span class="tag">Visual Identity</span>
+<span class="tag">Art Direction</span>
+<span class="tag">Editorial Design</span>
+<span class="tag">Typography</span>
+<span class="tag">Digital</span>
+</div>
+<p class="proj-brief">A comprehensive editorial and visual ecosystem for a contemporary gallery championing visionary artists from North Africa and the Middle East.</p>
+<p class="proj-concept">Structural restraint as institutional authority. Executed through a rigorous typographic hierarchy and generous negative space, culminating in a meticulously crafted 350-page monographic art book designed to let the works breathe while commanding cultural presence.</p>
+<p class="proj-role">Role — Lead Graphic Designer</p>
+</div>
+<div class="gallery g-2col">
+<img class="gi gi-tall" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_b_2.png" alt="Selma Feriani Gallery - desktop identity" loading="lazy" />
+<div class="gi-stack">
+<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_m.png" alt="Selma Feriani Gallery - mobile view" loading="lazy" />
+<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_m2.png" alt="Selma Feriani Gallery - mobile detail" loading="lazy" />
+</div>
+<img class="gi gi-wide" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_b_3.png" alt="Selma Feriani Gallery - editorial spread" loading="lazy" />
+</div>
+</article>
 
-        <div class="project-images">
-          <img src="assets/p2-01.jpg" alt="Pupchen image 1" onerror="this.style.opacity=0.25">
-          <img src="assets/p2-02.jpg" alt="Pupchen image 2" onerror="this.style.opacity=0.25">
-        </div>
-        <div class="project-actions"><a class="btn" href="#">Open</a></div>
-      </article>
+<!-- PROJECT 02: HOUSE OF GODDESSES -->
+<article class="project">
+<div class="proj-num">〇二</div>
+<div class="proj-meta">
+<p class="proj-client">Beauty &amp; Wellness Brand</p>
+<h3 class="proj-name">House of<br>Goddesses</h3>
+<span class="proj-name-jp">ハウス・オブ・ゴッデセス</span>
+<div class="proj-tags">
+<span class="tag">Brand Identity</span>
+<span class="tag">Logo &amp; Type</span>
+<span class="tag">Motion Graphics</span>
+<span class="tag">Art Direction</span>
+<span class="tag">Packaging</span>
+</div>
+<p class="proj-brief">Comprehensive brand world-building and creative direction for an elevated beauty label rooted in ancient ritual and contemporary elegance.</p>
+<p class="proj-concept">Capturing the tension between mythological narrative and minimalist luxury. Developing a holistic graphic charter, packaging systems, and motion graphics designed to function as tactile objects of desire across physical and digital touchpoints.</p>
+<p class="proj-role">Role — Brand Designer &amp; Art Director</p>
+</div>
+<div class="gallery g-asym">
+<img class="gi gi-tall" src="https://rinaffff.github.io/rina-portfolio/assets/hog_design_1.jpg" alt="House of Goddesses - brand identity" loading="lazy" />
+<div class="gi-stack">
+<img class="gi gi-sq" src="https://rinaffff.github.io/rina-portfolio/assets/hog_logo_1.png" alt="House of Goddesses logotype" loading="lazy" />
+<img class="gi gi-sq" src="https://rinaffff.github.io/rina-portfolio/assets/hog_logo_2.png" alt="House of Goddesses - logo variant" loading="lazy" />
+</div>
+<img class="gi gi-wide" src="https://rinaffff.github.io/rina-portfolio/assets/hog_design_2.jpg" alt="House of Goddesses campaign spread" loading="lazy" />
+<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/hog_design_3.jpg" alt="House of Goddesses - identity detail" loading="lazy" />
+<img class="gi gi-3to2" src="https://rinaffff.github.io/rina-portfolio/assets/hog_design_4.jpg" alt="House of Goddesses - packaging" loading="lazy" />
+</div>
+<div class="vid-grid" style="grid-column:1/-1; margin-top:.65rem;">
+<div class="vid-wrap">
+<video src="https://rinaffff.github.io/rina-portfolio/assets/hog_vid_1.mp4" autoplay muted loop playsinline aria-label="House of Goddesses - motion 1"></video>
+<span class="vid-label">Motion 01</span>
+</div>
+<div class="vid-wrap">
+<video src="https://rinaffff.github.io/rina-portfolio/assets/hog_vid_2.mp4" autoplay muted loop playsinline aria-label="House of Goddesses - motion 2"></video>
+<span class="vid-label">Motion 02</span>
+</div>
+<div class="vid-wrap">
+<video src="https://rinaffff.github.io/rina-portfolio/assets/hog_vid_3.mp4" autoplay muted loop playsinline aria-label="House of Goddesses - motion 3"></video>
+<span class="vid-label">Motion 03</span>
+</div>
+</div>
+</article>
 
-      <!-- Project 3 -->
-      <article class="project" id="p3">
-        <h3>Lobna — House of Goddesses</h3>
-        <div class="meta">Role: Graphic Designer / Visual Identity — 2023/12 — ongoing</div>
-        <p class="desc">Designed the launch visual identity and ongoing visual materials, including posters and brand illustrations that emphasize feminine mythology and narrative.</p>
+<!-- PROJECT 03: SOUTHTOWN RAGE -->
+<article class="project">
+<div class="proj-num">〇三</div>
+<div class="proj-meta">
+<p class="proj-client">Music &amp; Cultural Identity</p>
+<h3 class="proj-name">Southtown<br>Rage - Fijo</h3>
+<span class="proj-name-jp">サウスタウン・レイジ</span>
+<div class="proj-tags">
+<span class="tag">Visual Identity</span>
+<span class="tag">Graphic Design</span>
+<span class="tag">Merch &amp; Product</span>
+<span class="tag">Cultural Branding</span>
+</div>
+<p class="proj-brief">Immersive visual identity, costume styling, and post-production creative direction for an emerging music collective.</p>
+<p class="proj-concept">Proving that cultural edge and design discipline are not mutually exclusive. Injecting raw, territorial energy with the polished visual coherence of a premium brand, driving significant audience engagement and measurable market recognition.</p>
+<p class="proj-role">Role — Lead Designer</p>
+</div>
+<div class="gallery g-2col">
+<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/st_d_1.png" alt="Southtown Rage - identity system" loading="lazy" />
+<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/st_d_2.png" alt="Southtown Rage graphic detail" loading="lazy" />
+<img class="gi gi-wide" src="https://rinaffff.github.io/rina-portfolio/assets/st_presentation.png" alt="Southtown Rage - full presentation" loading="lazy" />
+<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/st_d_3.png" alt="Southtown Rage colour study" loading="lazy" />
+<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/st_d_5.png" alt="Southtown Rage - detail 5" loading="lazy" />
+<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/st_d_7.png" alt="Southtown Rage detail 7" loading="lazy" />
+<img class="gi gi-wide" src="https://rinaffff.github.io/rina-portfolio/assets/southtown_tshirts.png" alt="Southtown Rage merchandise" loading="lazy" />
+</div>
+</article>
 
-        <div class="project-images">
-          <img src="assets/p3-01.jpg" alt="Lobna image 1" onerror="this.style.opacity=0.25">
-          <img src="assets/p3-02.jpg" alt="Lobna image 2" onerror="this.style.opacity=0.25">
-        </div>
-        <div class="project-actions"><a class="btn" href="#">Open</a></div>
-      </article>
+<!-- PROJECT 04: BUCK N' BREW -->
+<article class="project">
+<div class="proj-num">〇四</div>
+<div class="proj-meta">
+<p class="proj-client">Lifestyle &amp; Concept Branding</p>
+<h3 class="proj-name">Buck n'<br>Brew</h3>
+<span class="proj-name-jp">バック・アンド・ブリュー</span>
+<div class="proj-tags">
+<span class="tag">Brand Identity</span>
+<span class="tag">Concept Strategy</span>
+<span class="tag">Packaging</span>
+<span class="tag">Logo Design</span>
+</div>
+<p class="proj-brief">Holistic identity design and conceptual brand strategy for a contemporary, artisanal coffee house.</p>
+<p class="proj-concept">Sculpting a distinct "warm-intellectual" visual ecosystem. Balancing rustic textures with sophisticated modern layout systems to create an inviting, lifestyle-driven brand presence that targets premium consumer segments.</p>
+<p class="proj-role">Role — Art Director &amp; Brand Strategist</p>
+</div>
+<div class="gallery g-2col">
+<!-- Assets fallbacks clônés sur la structure propre pour tes futurs mockups -->
+<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_m.png" alt="Buck n Brew - Branding Identity Mockup" loading="lazy" />
+<img class="gi gi-std" src="https://rinaffff.github.io/rina-portfolio/assets/sfg_m2.png" alt="Buck n Brew - Packaging Detail" loading="lazy" />
+</div>
+</article>
+</section>
 
-      <!-- Project 4 -->
-      <article class="project" id="p4">
-        <h3>Maison de la Lumière</h3>
-        <div class="meta">Role: Graphic Designer & Content Director — 2024/02 – 2025/01</div>
-        <p class="desc">Reworked the entire brand identity (colors, logo, typography, guidelines). Directed and shot photo/video content to align with the refreshed branding.</p>
+<!-- CONTACT -->
+<section id="contact">
+<div class="contact-inner">
+<h2 class="contact-h2 reveal">
+Let's<br>make<br><em>some</em>thing<br>
+<span>together.</span>
+</h2>
+<div class="contact-body reveal d1">
+<p class="contact-intro">Open to opportunities with luxury brands, beauty houses, cultural institutions, and avant-garde creative studios particularly in Japan and internationally. Available for full-time roles and high-stakes freelance partnerships.</p>
+<div class="contact-langs">
+<span class="lang-tag on">French - Native</span>
+<span class="lang-tag on">English - Fluent (C1)</span>
+<span class="lang-tag on">日本語 - A2 (JLPT N4 Target)</span>
+<span class="lang-tag">Arabic - Native</span>
+</div>
+<p class="contact-jp">お気軽にご連絡ください</p>
+<a class="contact-mail" href="mailto:benamarrina@gmail.com">benamarrina@gmail.com</a>
+</div>
+</div>
+</section>
 
-        <div class="project-images">
-          <img src="assets/p4-01.jpg" alt="Maison de la Lumière image 1" onerror="this.style.opacity=0.25">
-          <img src="assets/p4-02.jpg" alt="Maison de la Lumière image 2" onerror="this.style.opacity=0.25">
-        </div>
-        <div class="project-actions"><a class="btn" href="#">Open</a></div>
-      </article>
-
-      <!-- Project 5 -->
-      <article class="project" id="p5">
-        <h3>Selma Feriani Gallery</h3>
-        <div class="meta">Role: Graphic Design & Communication Support — 2024/08 — ongoing</div>
-        <p class="desc">Produce exhibition visuals, press materials and digital content for shows and fairs. Work adapts gallery communication for international audiences while keeping a minimal, art-forward layout.</p>
-
-        <div class="project-images">
-          <img src="assets/p5-01.jpg" alt="Selma Feriani Gallery image 1" onerror="this.style.opacity=0.25">
-          <img src="assets/p5-02.jpg" alt="Selma Feriani Gallery image 2" onerror="this.style.opacity=0.25">
-        </div>
-        <div class="project-actions"><a class="btn" href="#">Open</a></div>
-      </article>
-
-      <!-- Project 6 -->
-      <article class="project" id="p6">
-        <h3>Buck N Brew — Coffee Shop</h3>
-        <div class="meta">Role: Graphic Designer & 3D Interior Designer — 2024/07 (pre-launch)</div>
-        <p class="desc">Built the full brand identity from scratch (logo, menu, signage, packaging). Designed the coffee shop’s interior space in 3D, merging brand aesthetic with spatial storytelling.</p>
-
-        <div class="project-images">
-          <img src="assets/p6-01.jpg" alt="Buck N Brew image 1" onerror="this.style.opacity=0.25">
-          <img src="assets/p6-02.jpg" alt="Buck N Brew image 2" onerror="this.style.opacity=0.25">
-        </div>
-        <div class="project-actions"><a class="btn" href="#">Open</a></div>
-      </article>
-
-      <!-- Project 7 -->
-      <article class="project" id="p7">
-        <h3>Layla — Traditional Tunisian Delicacies</h3>
-        <div class="meta">Role: Art Direction & Designer — 2024</div>
-        <p class="desc">Developed brand positioning and packaging concepts linking Tunisian tradition with modern minimal visual language for European markets.</p>
-
-        <div class="project-images">
-          <img src="assets/p7-01.jpg" alt="Layla image 1" onerror="this.style.opacity=0.25">
-          <img src="assets/p7-02.jpg" alt="Layla image 2" onerror="this.style.opacity=0.25">
-        </div>
-        <div class="project-actions"><a class="btn" href="#">Open</a></div>
-      </article>
-
-      <!-- Project 8 -->
-      <article class="project" id="p8">
-        <h3>Fruit Cart (personal project)</h3>
-        <div class="meta">Role: Designer (product + visual identity) — 2024</div>
-        <p class="desc">Designed an assemblable/removable fruit cart (2.50 m × 1.20 m × 0.60 m) with a focus on aesthetics, modularity and storytelling through surface graphics.</p>
-
-        <div class="project-images">
-          <img src="assets/p8-01.jpg" alt="Fruit Cart image 1" onerror="this.style.opacity=0.25">
-          <img src="assets/p8-02.jpg" alt="Fruit Cart image 2" onerror="this.style.opacity=0.25">
-        </div>
-        <div class="project-actions"><a class="btn" href="#">Open</a></div>
-      </article>
-
-      <!-- Project 9 -->
-      <article class="project" id="p9">
-        <h3>Southtown Rage — Rap Album (Fijo)</h3>
-        <div class="meta">Role: Art Director & Visual Designer — Early December 2024</div>
-        <p class="desc">Designed album visuals and led art direction for 3 music videos; served as production director during shoots. I handled stills, promotional posters, and the visual system around the release.</p>
-
-        <div class="project-images single">
-          <img src="assets/p9-hero.jpg" alt="Southtown Rage main poster / cover" onerror="this.style.opacity=0.25">
-        </div>
-
-        <div class="project-images">
-          <img src="assets/p9-01.jpg" alt="Southtown Rage still 1" onerror="this.style.opacity=0.25">
-          <img src="assets/p9-02.jpg" alt="Southtown Rage still 2" onerror="this.style.opacity=0.25">
-        </div>
-
-        <div class="project-actions">
-          <a class="btn" href="#">Open Assets</a>
-          <a class="btn ghost" href="https://www.youtube.com/watch?v=pDxKClNKK0w" target="_blank" rel="noopener">Watch main video</a>
-        </div>
-      </article>
-
-    </section> <!-- end projects -->
-
-    <!-- About -->
-    <section id="about" class="about" aria-labelledby="about-title">
-      <h2 id="about-title">About / 自己紹介</h2>
-      <p>Born in 1998 in Sfax, Tunisia. I explore design movements and exchange perspectives with peers to keep my creativity flowing. I pursue expressive design through emotional research and iterative experimentation.</p>
-      <p>1998年チュニジア・スファックス生まれ。デザインの潮流や仲間との視点交換を通じて創造力を育て、感情に根ざした実験と試行を通して表現を追求しています。</p>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact" aria-labelledby="contact-title">
-      <h2 id="contact-title">Contact / 連絡先</h2>
-      <p>Email: <a href="mailto:your@email.com">your@email.com</a> — Instagram: <a href="https://instagram.com/" target="_blank" rel="noopener">instagram.com/yourhandle</a></p>
-      <p>Replace the placeholders above with your real contact details. For local previews, put images in the `assets/` folder next to this file.</p>
-    </section>
-
-    <footer>
-      © <strong>Rina Ben Amar</strong> — Graphic Designer & Art Director
-    </footer>
-
-  </div> <!-- wrap -->
+<!-- FOOTER -->
+<footer>
+<span class="f-copy">&copy; 2026 Rina Benamar - All rights reserved</span>
+<span class="f-jp">グラフィックデザイナー / アートディレクター</span>
+</footer>
 
 <script>
-  // reveal animation
-  document.addEventListener('DOMContentLoaded', function () {
-    const projects = document.querySelectorAll('.project');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-    }, {threshold: 0.12});
-    projects.forEach(p => obs.observe(p));
-  });
+/* cursor */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+document.addEventListener('mousemove', e => {
+cur.style.left = ring.style.left = e.clientX + 'px';
+cur.style.top = ring.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a, img, video, .tag, .jp-pill, .infl-item').forEach(el => {
+el.addEventListener('mouseenter', () => cur.classList.add('big'));
+el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+});
 
-  // smooth anchors offset for sticky header
-  (function(){
-    const headerHeight = 72;
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', function(e){
-        const targetId = this.getAttribute('href').slice(1);
-        const target = document.getElementById(targetId);
-        if(target){ e.preventDefault(); const y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 10; window.scrollTo({top:y, behavior:'smooth'}); history.replaceState(null,'','#'+targetId); }
-      });
-    });
-  })();
+/* scroll reveal projects */
+const io1 = new IntersectionObserver(es => {
+es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io1.unobserve(e.target); } });
+}, { threshold: .08 });
+document.querySelectorAll('.project').forEach(el => io1.observe(el));
+
+/* scroll reveal generic */
+const io2 = new IntersectionObserver(es => {
+es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io2.unobserve(e.target); } });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => io2.observe(el));
 </script>
-
 </body>
 </html>
